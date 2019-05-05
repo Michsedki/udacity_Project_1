@@ -1,5 +1,6 @@
 #Logs analysis project
 
+## Project summary
 ####It is internal reporting tool that will use information from database to discover:
 * What are the most popular three articles of all time?
 * Who are the most popular article authors of all time?
@@ -20,7 +21,7 @@ log into your personal Github acccount, and fork  [GitHub: udacity\_Project\_1](
 From terminal,run this command(replace `<UserName>` with your GitHub username):
 `git clone https://github.com/<UserName>/udacity_Project_1 news_data_analysis`
 
-#### Unzip the file and Copy this file news\_data\_analysis.py to your database directory.
+#### Copy this file news\_data\_analysis.py to your database directory.
 
 
 ## How to Use
@@ -40,3 +41,17 @@ Ursula La Multa - 507594 Views
 Third report: On which days did more than 1% of requests lead to errors?
 Jul 17, 2016  -  2.26 % errors
 ```
+
+## Code Design
+#### The Project contains 3 files :
+
+1. news\_data\_analysis.py (Source Code)
+2. README.MD (This File)
+3. result (Sample Output) 
+
+
+
+
+
+
+
