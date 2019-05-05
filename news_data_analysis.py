@@ -1,3 +1,6 @@
+# using python 2.7
+# conforms to PEP8
+
 # the news_data_analysis class is working
 # on newsdata.sql Database to analyse the huge data
 # to smaller reports which is easy to read,
@@ -39,9 +42,7 @@ class News_Data_Analysis:
 
         result = self.fetch(query)
         for record in result:
-            print( "\"" + record[0] + "\"" + " - " + str(record[1]) + " Views")
-
-        # self.print_result(result)
+            print("\" %s \" - %s Views" % (record[0], str(record[1])))
 
     def most_popular_authors(self):
         query = '''select authors.name, count(*) 
@@ -54,8 +55,7 @@ class News_Data_Analysis:
 
         print("\nSecond report: Who are the most popular article authors of all time?")
         result = self.fetch(query)
-        # print( result[0][0] + " - " + str(result[0][1] + " Views"))
-        print(result[0][0] + " - " + str(result[0][1]) + " Views")
+        print("%s - %s Views" % (result[0][0], str(result[0][1]) ))
 
     def over_one_percent_request_error_date(self):
         query = '''select date(log.time) as DayDate,
@@ -65,7 +65,7 @@ class News_Data_Analysis:
         group by (DayDate, status)
         order by DayDate;'''
         result = self.fetch(query)
-        # print(result[0])
+
         for counter in range(0,len(result), 2):
             goodRequest = result[counter]
             badRequest = result[counter + 1]
@@ -74,11 +74,8 @@ class News_Data_Analysis:
             totalRequests = numGoodRequests + numBadRequests
             badRequestsPrecentage = (numBadRequests * 100.0 / totalRequests) 
             if badRequestsPrecentage > 1:
-                print ("\nThird report: On which days did more than 1% of requests lead to errors?")
-                print result[counter][0].strftime("%b %d, %Y"), " - ", str(round(badRequestsPrecentage, 2)),"% errors"
-                # print("Exceeded bad Request", result[counter][0],numGoodRequests,numBadRequests,totalRequests,badRequestsPrecentage  )
-
-        # self.print_result(result)
+                print("\nThird report: On which days did more than 1% of requests lead to errors?")
+                print("%s - %s%% errors" % (result[counter][0].strftime("%b %d, %Y"), str(round(badRequestsPrecentage, 2))) )    
 
 news_data_analysis = News_Data_Analysis()
 
