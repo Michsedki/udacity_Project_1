@@ -5,14 +5,12 @@
 # on newsdata.sql Database to analyse the huge data
 # to smaller reports which is easy to read,
 # the news_data_analysis contains three methods
-# 1 -
-# 2 -
-# 3 -
-
+# 1 - most_three_popular_articles
+# 2 - most_popular_authors
+# 3 - over_one_percent_request_error_date
 
 import psycopg2
 import datetime
-
 
 class News_Data_Analysis:
     # store the database name as class atribute
