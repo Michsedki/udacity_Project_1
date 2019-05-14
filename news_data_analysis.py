@@ -12,6 +12,7 @@
 import psycopg2
 import datetime
 
+
 class News_Data_Analysis:
     # store the database name as class atribute
     Database_Name = "news"
