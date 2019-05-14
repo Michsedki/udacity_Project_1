@@ -20,10 +20,8 @@ class News_Data_Analysis:
 
     def fetch(self, query):
         """This function connect to the DB, execute the query, and returns the results
-        
         Arguments:
             query {String} -- the query should be executed
-        
         Returns:
             [array] -- [the array of fetching rows]
         """
@@ -36,10 +34,9 @@ class News_Data_Analysis:
         return result
 
     def most_three_popular_articles(self):
-        """This Function call the fetch function with query to find out 
+        """This Function call the fetch function with query to find out
         the most popular three articles of all time
         """
-        
         query = '''select articles.title as Article_Name , count(*) as Views_Count
         from log
         right join articles on log.path = concat('/article/', articles.slug)
