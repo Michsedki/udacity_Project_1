@@ -60,14 +60,17 @@ class News_Data_Analysis:
         where log.status = '200 OK' and log.path = concat('/article/',
         articles.slug) and articles.author = authors.id
         group by authors.name
-        order by count desc
-        limit 1;
+        order by count desc;
         '''
 
         print("\nSecond report: Who are the most popular"
               " article authors of all time?")
         result = self.fetch(query)
-        print("%s - %s Views" % (result[0][0], str(result[0][1])))
+        # print("%s - %s Views" % (result[0][0], str(result[0][1])))
+        for record in result:
+            print("%s - %s Views" % (record[0], str(record[1])))
+
+
 
     def over_one_percent_request_error_date(self):
         """This Function call the fetch function with query to find out

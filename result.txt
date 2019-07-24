@@ -5,6 +5,9 @@ First report: What are the most popular three articles of all time?
 
 Second report: Who are the most popular article authors of all time?
 Ursula La Multa - 507594 Views
+Rudolf von Treppenwitz - 423457 Views
+Anonymous Contributor - 170098 Views
+Markoff Chaney - 84557 Views
 
 Third report: On which days did more than 1% of requests lead to errors?
 Jul 17, 2016  -  2.26 % errors
