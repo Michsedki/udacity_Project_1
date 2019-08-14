@@ -70,46 +70,32 @@ class News_Data_Analysis:
         for record in result:
             print("%s - %s Views" % (record[0], str(record[1])))
 
-
-
     def over_one_percent_request_error_date(self):
         """This Function call the fetch function with query to find out
         On which days did more than 1% of requests lead to errors
         """
         query = '''select date(log.time) as DayDate,
         count(*) as NumRequest,
-        log.status as status
-        from   log
-        group by (DayDate, status)
-        order by DayDate;'''
-        result = self.fetch(query)
+        SUM(CASE WHEN log.status = '200 OK' THEN 1 ELSE 0 END) as good,
+        SUM(CASE WHEN log.status = '200 OK' THEN 0 ELSE 1 END) as error,
+        100.0*(SUM(CASE WHEN log.status = '200 OK' THEN 0 ELSE 1 END))/count(*)
+        as ratio
+        from log
+        group by (DayDate)
+        order by DayDate'''
 
-        """
-        loop on the results rows to count :
-        1- number of good requests
-        2- number of bad requests
-        then count add them to get the total requests at that date
-        finally get the error persentage by multiply the bad requests with 100
-        then divided over the total number of requests
-
-        check if it is over 1 we print that date and the error persentage
-
-        """
-
-        for counter in range(0, len(result), 2):
-            goodRequest = result[counter]
-            badRequest = result[counter + 1]
-            numGoodRequests = goodRequest[1]
-            numBadRequests = badRequest[1]
-            totalRequests = numGoodRequests + numBadRequests
-            badRequestsPrecentage = (numBadRequests * 100.0 / totalRequests)
-            if badRequestsPrecentage > 1:
-                print(
+        query = '''select DayDate,ratio
+        from   ('''+query+''') as v
+        where ratio >   1 '''
+        results = self.fetch(query)
+        print(
                     "\nThird report: On which days did more than 1%"
                     "of requests lead to errors?")
-                print("%s - %s%% errors" % (result[counter][0].strftime(
-                    "%b %d, %Y"), str(round(badRequestsPrecentage, 2))))
 
+        for result in results:
+            # print("Error in day ",result[0], "is", result[1])
+            print("%s - %s%% errors" % (result[0].strftime(
+                    "%b %d, %Y"), str(round(result[1], 2))))
 
 news_data_analysis = News_Data_Analysis()
 
