@@ -1,4 +1,4 @@
-# using python 2.7
+#!/usr/bin/env python
 # conforms to PEP8
 
 # the news_data_analysis class is working
